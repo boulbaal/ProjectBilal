@@ -1,0 +1,7 @@
+__DOMAIN__ {
+	encode gzip
+	reverse_proxy 127.0.0.1:__PORT__
+	log {
+		output file /var/log/caddy/projectbilal.log
+	}
+}

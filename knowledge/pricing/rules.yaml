@@ -1,0 +1,43 @@
+# Pricing rules. Read by server/pricing.py. Every number a customer sees comes from here.
+# This is a TEMPLATE with example values. Replace during setup and verify with examples.md.
+
+currency: EUR
+vat_percent: 21
+prices_include_vat: false
+rounding: 0.01
+minimum_order: 0
+quote_validity_days: 30
+
+products:
+  - id: example_panel
+    name: Example panel
+    aliases: [panel, paneel, panneau]
+    unit: m2
+    price_per_unit: 100.00
+    min_quantity: 0.5
+    options:
+      - id: premium_finish
+        name: Premium finish
+        type: percent
+        value: 15
+        default: false
+      - id: installation
+        name: Installation
+        type: per_unit
+        value: 25.00
+        default: false
+
+surcharges:
+  - id: small_order
+    name: Small order surcharge
+    applies_when: "total_before_surcharges < 250"
+    type: fixed
+    value: 35.00
+
+delivery:
+  - zone: local
+    postcodes: ["35", "36", "37"]
+    price: 0
+  - zone: national
+    postcodes: ["*"]
+    price: 75.00
